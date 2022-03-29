@@ -1,0 +1,31 @@
+.player{
+    min-height: 20vh;
+    //center the content
+    display: flex; //put everything in straight line , one to each other
+    flex-direction: column; //back to column but now with access to aling-items and justify-content
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.time-control{
+    width: 50%;
+    display: flex;
+    input{
+        width: 100%;
+        padding: 1rem 0rem; 
+    }
+    p{
+        padding:1rem;
+    }
+}
+
+.play-control{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    width: 30%;
+    svg{
+        cursor: pointer;
+    }
+}

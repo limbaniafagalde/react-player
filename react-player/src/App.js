@@ -17,6 +17,7 @@ function App() {
  const [songInfo, setSongInfo] = useState({
     currentTime: 0,
     duration: 0,
+    animationPercentage: 0,
   });
   const [libraryStatus, setLibraryStatus] = useState(false); //closed
  
@@ -29,7 +30,10 @@ function App() {
   //we need to update every second that the song is playing
   const current = e.target.currentTime;
   const duration = e.target.duration;
-  setSongInfo({...songInfo, currentTime: current, duration: duration}); //we need to update the state every time the song is playing
+  const roundedCurrent = Math.round(current); //get rid og the decimals
+  const roundedDuration = Math.round(duration);
+  const animation= Math.round((roundedCurrent/ roundedDuration) * 100);
+  setSongInfo({...songInfo, currentTime: current, duration: duration, animationPercentage : animation,}); //we need to update the state every time the song is playing
 }
 
  

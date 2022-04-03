@@ -1,5 +1,5 @@
 import React from "react";
-import { playAudio } from "../util";
+//import { playAudio } from "../util";
 
 const LibrarySong = ({song, 
                       setCurrentSong, 
@@ -9,9 +9,9 @@ const LibrarySong = ({song,
                       isPlaying, 
                       setSongs}) => {
     
-    const songSelectHandler = () =>{
+    const songSelectHandler = async () =>{
         const selectedSong = song;
-        setCurrentSong(selectedSong);
+        await setCurrentSong(selectedSong);
         //Add Active State
         const newSongs = songs.map((song) => {
             if (song.id === id) {
@@ -29,7 +29,7 @@ const LibrarySong = ({song,
         setSongs(newSongs);
         
         //check if the song is playing and when we click in another song will start playing it not paused. We need the ref to load property and indicate the play
-        playAudio(isPlaying, audioRef);
+        if(isPlaying) audioRef.current.play();
     };
     
     return(

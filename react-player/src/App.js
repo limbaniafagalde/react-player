@@ -6,7 +6,7 @@ import Song from "./components/Song";
 import Player from "./components/Player";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
-//Import Util
+//Import Data
 import data from "./data";
 
 function App() {
@@ -30,10 +30,20 @@ function App() {
   //we need to update every second that the song is playing
   const current = e.target.currentTime;
   const duration = e.target.duration;
-  const roundedCurrent = Math.round(current); //get rid og the decimals
+  const roundedCurrent = Math.round(current); //get rid of the decimals
   const roundedDuration = Math.round(duration);
   const animation= Math.round((roundedCurrent/ roundedDuration) * 100);
   setSongInfo({...songInfo, currentTime: current, duration: duration, animationPercentage : animation,}); //we need to update the state every time the song is playing
+}
+
+//Functions
+const songEndHandler = async () =>{
+  //when the song ends just keep forward
+  let currentIndex = songs.findIndex((song) => song.id === currentSong.id); //index of the current song
+
+  //wait a bit for this action to finish
+  await setCurrentSong(songs[(currentIndex + 1) % songs.length]); 
+  if(isPlaying) audioRef.current.play();
 }
 
  
@@ -68,6 +78,7 @@ function App() {
            onLoadedMetadata = {timeUpdateHandler} //To set the information of the song (end time in this case) from the begining
            ref = {audioRef} 
            src={currentSong.audio}
+           onEnded = {songEndHandler}
         >
         </audio>
     </div>

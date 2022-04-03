@@ -17,6 +17,6 @@ Music App is a simple project developed in React Js.
 3. Run (`npm start`)
 
 ## View Online
-
+https://music-app-lf.netlify.app/
 
 

@@ -1,6 +1,6 @@
-# MUSIC APP
+#WAVES MUSIC APP
 
-Music App is a simple project developed in React Js.
+Waves is a simple Music App project developed in React Js.
 
 ## Screenshot App
 

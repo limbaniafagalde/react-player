@@ -48,7 +48,7 @@ const songEndHandler = async () =>{
 
  
  return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? "library-active" : ""}`}>
       <Nav 
         libraryStatus ={libraryStatus} 
         setLibraryStatus = {setLibraryStatus}

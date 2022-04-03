@@ -4,7 +4,7 @@ Music App is a simple project developed in React Js.
 
 ## Screenshot App
 
-![MusicApp](https://nimb.ws/fVBqRg)
+![MusicApp](https://nimbus-screenshots.s3.amazonaws.com/s/37fbb181365468df0a26d4f4635b3611.png)
 
 ## Libraries
 
@@ -18,5 +18,5 @@ Music App is a simple project developed in React Js.
 
 ## View Online
 
-https://sleepy-ritchie-4d6803.netlify.app/
+
 

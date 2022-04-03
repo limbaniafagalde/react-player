@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlay, faAngleLeft, faAngleRight, faPause,} from "@fortawesome/free-solid-svg-icons";
 //import { playAudio } from "../util";
@@ -13,7 +13,7 @@ const Player = ({currentSong,
                 setCurrentSong,
                 setSongs}) => {
     //UseEffect
-    useEffect(() => {
+    /*useEffect(() => {
         const newSongs = songs.map((song) => {
             if (song.id === currentSong.id) {
                 return{
@@ -30,7 +30,8 @@ const Player = ({currentSong,
         setSongs(newSongs);
 
     },[currentSong]); //run this function everytime my currentSong is updated
-   
+   */
+
     //Event Handlers
     const playSongHandler = () => {
         if(isPlaying){
@@ -61,19 +62,43 @@ const Player = ({currentSong,
             //wait a bit for this action to finish
           await setCurrentSong(songs[(currentIndex + 1) % songs.length]); 
             //we need to use modulus (%) to reset to 0 the state until it finish (it gonna happen when the currentIndex +1 is = to the length of the array because the reminder will be 0)
+            activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
         }
         if (direction === "skip-back") {
             if ((currentIndex - 1) % songs.length === -1) {
             await setCurrentSong(songs[songs.length - 1]); 
+
+            activeLibraryHandler(songs[songs.length - 1]);
+
                 //is gonna send us to the last song (example if I have 8 objects this will be 8-1=7 and its fine because the arrays starts from 0)
                 if(isPlaying) audioRef.current.play();
                 return;
             }
             await setCurrentSong(songs[(currentIndex - 1) % songs.length]); 
+            activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
         }
 
         if(isPlaying) audioRef.current.play();
                 
+    }
+
+    //we want to run it when we skip back or forward
+    const activeLibraryHandler = (nextPrev) =>{
+        const newSongs = songs.map((song) => {
+            if (song.id === nextPrev.id) {
+                return{
+                    ...song,
+                    active: true,
+                }
+            }else{
+                return{
+                    ...song,
+                    active: false,
+                }
+            }
+        });
+        setSongs(newSongs);
+
     }
 
     //Add the Styles

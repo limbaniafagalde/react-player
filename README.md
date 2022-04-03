@@ -1,4 +1,4 @@
-#WAVES MUSIC APP
+## WAVES MUSIC APP
 
 Waves is a simple Music App project developed in React Js.
 
